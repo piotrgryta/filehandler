@@ -33,11 +33,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(responseMessage, HttpStatus.resolve(appException.getHttpStatus()));
   }
 
-  @Override
-  protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
-                                                           HttpStatus status, WebRequest request) {
-    return handleEverythingElse(ex, request);
-  }
 
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,

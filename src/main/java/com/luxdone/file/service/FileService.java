@@ -11,6 +11,7 @@ import com.luxdone.file.service.model.FileMetadata;
 import com.luxdone.file.service.util.MetadataExtractor;
 import java.io.IOException;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Slf4j
 @Service
-public record FileService(FileRepository fileRepository) {
+@RequiredArgsConstructor
+public class FileService {
+
+  private final FileRepository fileRepository;
 
   /**
    * Save new multipart file to database.

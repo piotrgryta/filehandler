@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,9 @@ public class FileController {
   @PostMapping(consumes = "multipart/form-data")
   @Operation(summary = "Save any file",
       description = "Save any file and its metadata ")
-  public ResponseEntity<String> saveFile(@RequestParam("file") @NotNull MultipartFile file) {
+  public ResponseEntity<String> saveFile(
+      @RequestParam("file") @Valid @NotNull MultipartFile file) {
+    
     var fileId = fileService.saveFile(file);
     return ResponseEntity.ok(fileId);
   }
